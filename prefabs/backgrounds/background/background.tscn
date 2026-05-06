@@ -18,6 +18,8 @@ scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(1024, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Sky" unique_id=356524976]
+position = Vector2(0, -58.999992)
+scale = Vector2(1, 1.1705202)
 texture = ExtResource("1_6pyjb")
 centered = false
 
@@ -48,6 +50,7 @@ texture = ExtResource("3_0f6qn")
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1356014870]
 scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(0, 50)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D2" unique_id=1174811711]
 texture = ExtResource("2_hoxfj")
@@ -55,6 +58,7 @@ centered = false
 
 [node name="Parallax2D3" type="Parallax2D" parent="." unique_id=1945942576]
 scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(0, 50)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D3" unique_id=1027303799]
 texture = ExtResource("3_2u8hg")
@@ -62,13 +66,15 @@ centered = false
 
 [node name="Parallax2D4" type="Parallax2D" parent="." unique_id=240904099]
 scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(0, 50)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D4" unique_id=1362327696]
 texture = ExtResource("4_s0son")
 centered = false
 
 [node name="Parallax2D5" type="Parallax2D" parent="." unique_id=1544993596]
-scroll_scale = Vector2(0.8, 0.8)
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(0, 50)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D5" unique_id=887093109]
 texture = ExtResource("5_0f6qn")

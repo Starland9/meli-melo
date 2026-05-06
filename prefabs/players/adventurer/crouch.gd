@@ -1,10 +1,11 @@
 extends GroundedState
 
 func enter():
-	anim.play("run")
+	player.speed_scale = 0
+	anim.play("crouch")
 
 func physics_update(_delta: float):
 	super.physics_update(_delta)
 
-	if not player.direction:
+	if not player.is_crouching:
 		transitioned.emit("idle")

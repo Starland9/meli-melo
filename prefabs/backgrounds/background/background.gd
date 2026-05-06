@@ -1,14 +1,18 @@
 extends Node2D
 
-var scale_factor := 1.2
+@export var scale_factor := 1
 
 func _ready() -> void:
 	var t := 0.0
 
 	for child in get_children():
 		if child is Parallax2D:
-			child.get_child(0).scale = Vector2.ONE * scale_factor
-			child.scroll_scale = Vector2.ONE * t * scale_factor
-			t += .2
+			set_parallax_values(child, t)
+			t += 0.2
 
-			child.repeat_size = Vector2(1024, 346) * scale_factor
+	set_parallax_values(get_child(-1), 1 * scale_factor)
+
+func set_parallax_values(parallax: Parallax2D, value: float):
+	parallax.get_child(0).scale = Vector2.ONE * scale_factor
+	parallax.scroll_scale.x = Vector2.ONE.x * value * scale_factor
+	parallax.repeat_size.x = Vector2(1024, 346).x * scale_factor
