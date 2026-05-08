@@ -1,5 +1,7 @@
 extends GroundedState
 
+const attack_sound := preload("res://assets/audio/sfx/player/Sword_slicing_throug_#1-1778236920293.wav")
+
 var stop_attack_timer : Timer = Timer.new()
 const MAX_COMBO := 3
 var current_combo := 0
@@ -19,13 +21,15 @@ func _on_stop_attack_timer_timeout():
 	transitioned.emit("idle")
 
 func enter():
+	player.speed_scale = 0.1
 	stop_attack_timer.start()
 	play_combo(current_combo)
-	player.speed_scale = 0.1
+	await get_tree().create_timer(0.5).timeout
 
 func play_combo(idx: int):
-	anim.play("attack_" + str(idx + 1))
-	await anim.animation_finished
+	player.play_anim("attack_" + str(idx + 1))
+	player.play_sfx(attack_sound)
+	await player.anim.animation_finished
 
 func physics_update(_delta: float):
 	super.physics_update(_delta)

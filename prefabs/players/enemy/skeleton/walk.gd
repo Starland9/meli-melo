@@ -1,11 +1,12 @@
-extends GroundedState
+extends EnemyState
 
 func enter():
-	player.speed_scale = 0
-	player.play_anim("crouch")
+	super.enter()
+	
+	enemy.play_anim("walk")
 
 func physics_update(_delta: float):
 	super.physics_update(_delta)
 
-	if not player.is_crouching:
+	if not player.direction:
 		transitioned.emit("idle")

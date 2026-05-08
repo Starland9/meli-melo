@@ -2,7 +2,7 @@ extends GroundedState
 
 func enter():
 	player.speed_scale = 0
-	anim.play("corner_grab")
+	player.play_anim("corner_grab")
 
 func physics_update(_delta: float):
 	super.physics_update(_delta)
@@ -12,7 +12,7 @@ func physics_update(_delta: float):
 
 func handle_climp():
 	if Input.is_action_just_pressed("jump"):
-		anim.play("corner_climb")
+		player.play_anim("corner_climb")
 		var tween = get_tree().create_tween().bind_node(player)
 		tween.tween_property(player, "position", Vector2(0, -40), .2).as_relative()
 		await tween.finished

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bpqdxxs8hv314" path="res://assets/image/tiles/Floor Tiles1.png" id="1_sgctp"]
 [ext_resource type="PackedScene" uid="uid://8fq7gth701no" path="res://prefabs/players/adventurer/adventurer.tscn" id="2_8absr"]
 [ext_resource type="Texture2D" uid="uid://bt24m1rj7pwjk" path="res://assets/image/tiles/Decor.png" id="3_51ujy"]
+[ext_resource type="PackedScene" uid="uid://c1a3t2jq6uj2s" path="res://prefabs/players/enemy/skeleton/skeleton.tscn" id="5_ypqds"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8absr"]
 texture = ExtResource("1_sgctp")
@@ -344,7 +345,8 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_1ro2l"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 4
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Herbe"
 terrain_set_0/terrain_0/color = Color(0.6509804, 0.70980394, 0.3254902, 1)
@@ -366,4 +368,128 @@ tile_map_data = PackedByteArray("AAAfAAsAAAACAAIAAAAfAAoAAAACAAEAAAAfAAkAAAACAAA
 tile_set = SubResource("TileSet_1ro2l")
 
 [node name="Adventurer" parent="." unique_id=431064942 instance=ExtResource("2_8absr")]
-position = Vector2(207, 33)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=891481945]
+
+[node name="Skeleton" parent="Enemies" unique_id=559584696 instance=ExtResource("5_ypqds")]
+position = Vector2(220, 194)
+
+[node name="Skeleton2" parent="Enemies" unique_id=1954323300 instance=ExtResource("5_ypqds")]
+position = Vector2(511, 99)
+
+[node name="Skeleton3" parent="Enemies" unique_id=302851715 instance=ExtResource("5_ypqds")]
+position = Vector2(799, 233)
+
+[node name="Skeleton4" parent="Enemies" unique_id=1530551855 instance=ExtResource("5_ypqds")]
+position = Vector2(1203, 196)
+
+[node name="Skeleton5" parent="Enemies" unique_id=1654981601 instance=ExtResource("5_ypqds")]
+position = Vector2(1514, 229)
+
+[node name="Skeleton6" parent="Enemies" unique_id=1976666206 instance=ExtResource("5_ypqds")]
+position = Vector2(1514, 229)
+
+[node name="Skeleton7" parent="Enemies" unique_id=634793766 instance=ExtResource("5_ypqds")]
+position = Vector2(1468, 231)
+
+[node name="Skeleton8" parent="Enemies" unique_id=1993816367 instance=ExtResource("5_ypqds")]
+position = Vector2(1975, 256)
+
+[node name="Skeleton9" parent="Enemies" unique_id=689477887 instance=ExtResource("5_ypqds")]
+position = Vector2(1975, 256)
+
+[node name="Skeleton10" parent="Enemies" unique_id=1026281016 instance=ExtResource("5_ypqds")]
+position = Vector2(2588, 70)
+
+[node name="Skeleton11" parent="Enemies" unique_id=1165215849 instance=ExtResource("5_ypqds")]
+position = Vector2(3072, 177)
+
+[node name="Skeleton12" parent="Enemies" unique_id=1117517394 instance=ExtResource("5_ypqds")]
+position = Vector2(3072, 177)
+
+[node name="Skeleton13" parent="Enemies" unique_id=954363248 instance=ExtResource("5_ypqds")]
+position = Vector2(3336, 164)
+
+[node name="Skeleton14" parent="Enemies" unique_id=181279699 instance=ExtResource("5_ypqds")]
+position = Vector2(3336, 164)
+
+[node name="Skeleton15" parent="Enemies" unique_id=1494403788 instance=ExtResource("5_ypqds")]
+position = Vector2(3619, 187)
+
+[node name="Skeleton16" parent="Enemies" unique_id=1875736217 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton17" parent="Enemies" unique_id=1028351407 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton18" parent="Enemies" unique_id=1539577728 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton19" parent="Enemies" unique_id=17232684 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton20" parent="Enemies" unique_id=562085392 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton21" parent="Enemies" unique_id=953451749 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton22" parent="Enemies" unique_id=1221314500 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton23" parent="Enemies" unique_id=306311125 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton24" parent="Enemies" unique_id=2092530541 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton25" parent="Enemies" unique_id=1528996523 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton26" parent="Enemies" unique_id=1090637812 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton27" parent="Enemies" unique_id=742996562 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton28" parent="Enemies" unique_id=181000548 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton29" parent="Enemies" unique_id=1472742047 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton30" parent="Enemies" unique_id=393416268 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton31" parent="Enemies" unique_id=1683235978 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton32" parent="Enemies" unique_id=396996097 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton33" parent="Enemies" unique_id=946188684 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton34" parent="Enemies" unique_id=1268713141 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton35" parent="Enemies" unique_id=392455011 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton36" parent="Enemies" unique_id=1574469163 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton37" parent="Enemies" unique_id=209670157 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton38" parent="Enemies" unique_id=1817543074 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton39" parent="Enemies" unique_id=1883777717 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton40" parent="Enemies" unique_id=880158173 instance=ExtResource("5_ypqds")]
+position = Vector2(4163, 163)
+
+[node name="Skeleton41" parent="Enemies" unique_id=788952353 instance=ExtResource("5_ypqds")]
+position = Vector2(4133, 163)

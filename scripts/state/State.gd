@@ -3,8 +3,7 @@ class_name State
 
 signal transitioned(state_name: String)
 
-var player: Adventurer
-var anim: AnimatedSprite2D
+var player: Character
 
 func enter():
 	pass

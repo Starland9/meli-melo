@@ -604,7 +604,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s8gn1"]
-radius = 6.0
+radius = 9.0
 height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvpeh"]
@@ -613,14 +613,15 @@ size = Vector2(16, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdr8w"]
 size = Vector2(24, 3)
 
-[node name="Adventurer" type="CharacterBody2D" unique_id=431064942]
+[node name="Adventurer" type="CharacterBody2D" unique_id=431064942 node_paths=PackedStringArray("anim", "audio_player")]
+collision_layer = 28
 script = ExtResource("1_qujmd")
+anim = NodePath("Anim")
+audio_player = NodePath("AudioPlayer")
 
 [node name="Anim" type="AnimatedSprite2D" parent="." unique_id=553457952]
 sprite_frames = SubResource("SpriteFrames_jvpeh")
-animation = &"corner_climb"
-frame = 4
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741783968]
 position = Vector2(0, 4)
@@ -629,11 +630,11 @@ shape = SubResource("CapsuleShape2D_s8gn1")
 [node name="GrapShape" type="CollisionShape2D" parent="." unique_id=2006274396]
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_jvpeh")
+disabled = true
 
-[node name="StateMachine" type="Node" parent="." unique_id=1423579887 node_paths=PackedStringArray("initial_state", "anim")]
+[node name="StateMachine" type="Node" parent="." unique_id=1423579887 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_56eos")
 initial_state = NodePath("Idle")
-anim = NodePath("../Anim")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=277432489]
 script = ExtResource("4_0vx14")
@@ -668,3 +669,5 @@ limit_bottom = 360
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/CornerCheckArea" unique_id=919923700]
 position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_pdr8w")
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=187314844]

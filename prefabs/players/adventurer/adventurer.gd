@@ -1,22 +1,18 @@
-extends CharacterBody2D
+extends Character
 class_name Adventurer
 
-@onready var anim : AnimatedSprite2D = $Anim
 @onready var corner_check_area : Area2D = $Areas/CornerCheckArea
 @onready var grab_shape : CollisionShape2D = $GrapShape
 
-const SPEED = 150.0
-const JUMP_VELOCITY = -300.0
-
-var direction : float = 0
-@onready var face_direction : int = int(direction)
 var is_attacking := false
-var speed_scale := 1.0
 var is_crouching := false
 var is_sliding := false
 var double_jump_count := 1
-var gravity_scale := 1.0
 var is_in_corner := false
+
+func _ready() -> void:
+	SPEED = 150.0
+	JUMP_VELOCITY = -300.0
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -28,12 +24,12 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func apply_gravity(delta: float):
-	if not is_on_floor():
-		velocity += get_gravity() * delta * gravity_scale
 
 func handle_move():
 	direction = Input.get_axis("run_left", "run_right")
+	update_direction()
+	
+func update_direction():
 	if direction:
 		velocity.x = direction * SPEED * speed_scale
 
@@ -64,3 +60,9 @@ func handle_slide():
 func toogle_corner_grab(activate: bool):
 	is_in_corner = activate
 	grab_shape.disabled = not activate
+	
+	
+func reset_attributes():
+	speed_scale = 1
+	double_jump_count = 1
+	gravity_scale = 1

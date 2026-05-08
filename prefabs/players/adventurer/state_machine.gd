@@ -5,14 +5,11 @@ class_name StateMachine
 var current_state: State
 var states : Dictionary[String, State] = {}
 
-@export var anim : AnimatedSprite2D
-
 func _ready() -> void:
 	await owner.ready
 	for child in get_children():
 		if child is State:
 			child.player = owner
-			child.anim = anim
 			states[child.name.to_lower()] = child
 			child.transitioned.connect(on_child_transition)
 
