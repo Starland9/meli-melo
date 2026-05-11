@@ -177,6 +177,7 @@ player_area = NodePath("PlayerArea")
 hitbox = NodePath("Hitbox")
 shape = NodePath("CollisionShape2D")
 blood_particle = NodePath("CPUParticles2D")
+damage_count = 10
 anim = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1451680216]
@@ -207,6 +208,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_q7k14")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=2044287697]
+collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=97011171]

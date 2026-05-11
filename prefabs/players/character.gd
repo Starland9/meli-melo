@@ -50,3 +50,6 @@ func stop_sfx_loop():
 func apply_gravity(delta: float):
 	if not is_on_floor():
 		velocity += get_gravity() * delta * gravity_scale
+		
+func toggle_attack_shape(enable: bool):
+	pass

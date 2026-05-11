@@ -27,9 +27,12 @@ func enter():
 	await get_tree().create_timer(0.5).timeout
 
 func play_combo(idx: int):
+	player.toggle_attack_shape(true)
 	player.play_anim("attack_" + str(idx + 1))
 	player.play_sfx(attack_sound)
 	await player.anim.animation_finished
+	player.toggle_attack_shape(false)
+
 
 func physics_update(_delta: float):
 	super.physics_update(_delta)
@@ -39,3 +42,6 @@ func physics_update(_delta: float):
 		current_combo = current_combo % MAX_COMBO
 		play_combo(current_combo)
 		stop_attack_timer.start()
+		
+func exit():
+	player.toggle_attack_shape(false)

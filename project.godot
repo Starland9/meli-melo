@@ -65,6 +65,7 @@ crouch={
 2d_physics/layer_3="World"
 2d_physics/layer_4="PlayerArea"
 2d_physics/layer_5="Hitbox"
+2d_physics/layer_6="Weapon"
 
 [physics]
 

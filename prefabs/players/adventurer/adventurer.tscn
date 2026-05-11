@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cf33jj8wjdd5b" path="res://prefabs/players/adventurer/crouch.gd" id="8_kx2vy"]
 [ext_resource type="Script" uid="uid://bt6oi2iw8v8ig" path="res://prefabs/players/adventurer/slide.gd" id="9_pdr8w"]
 [ext_resource type="Script" uid="uid://dxf7wl424i3fl" path="res://prefabs/players/adventurer/corner.gd" id="10_jvpeh"]
+[ext_resource type="Script" uid="uid://beddmm2pd4js1" path="res://prefabs/weapons/weapon.gd" id="11_h0qcu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_puyjy"]
 atlas = ExtResource("1_s8gn1")
@@ -613,6 +614,9 @@ size = Vector2(16, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdr8w"]
 size = Vector2(24, 3)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jvpeh"]
+radius = 6.0827627
+
 [node name="Adventurer" type="CharacterBody2D" unique_id=431064942 node_paths=PackedStringArray("anim", "audio_player")]
 collision_layer = 28
 script = ExtResource("1_qujmd")
@@ -621,7 +625,9 @@ audio_player = NodePath("AudioPlayer")
 
 [node name="Anim" type="AnimatedSprite2D" parent="." unique_id=553457952]
 sprite_frames = SubResource("SpriteFrames_jvpeh")
-animation = &"idle"
+animation = &"attack_1"
+frame = 4
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741783968]
 position = Vector2(0, 4)
@@ -669,5 +675,16 @@ limit_bottom = 360
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/CornerCheckArea" unique_id=919923700]
 position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_pdr8w")
+
+[node name="AttackArea" type="Area2D" parent="Areas" unique_id=2146777912]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("11_h0qcu")
+metadata/_custom_type_script = "uid://beddmm2pd4js1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/AttackArea" unique_id=1812992178]
+position = Vector2(15, 2)
+shape = SubResource("CircleShape2D_jvpeh")
+disabled = true
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=187314844]
