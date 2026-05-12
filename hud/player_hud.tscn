@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://cdaa4cb1pnqb1"]
+
+[ext_resource type="Script" uid="uid://djdnsdvs1j5qp" path="res://hud/player_hud.gd" id="1_msh7k"]
+[ext_resource type="Texture2D" uid="uid://0474eflx4xqu" path="res://assets/image/hud/1.png" id="2_r003q"]
+[ext_resource type="Texture2D" uid="uid://baqgaoch6udiy" path="res://assets/image/hud/2.png" id="3_0la6b"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="4_r003q"]
+[ext_resource type="Texture2D" uid="uid://dsk1c546m2bl6" path="res://assets/image/hud/360_A.png" id="5_0la6b"]
+[ext_resource type="Texture2D" uid="uid://dupau446b6rd1" path="res://assets/image/hud/360_B.png" id="6_71mc8"]
+[ext_resource type="Texture2D" uid="uid://b8qaou6vxmkvm" path="res://assets/image/hud/360_X.png" id="7_sxsxl"]
+[ext_resource type="Texture2D" uid="uid://bexnr1rx25q88" path="res://assets/image/hud/360_Y.png" id="8_eueje"]
+
+[node name="PlayerHUD" type="CanvasLayer" unique_id=957550667]
+script = ExtResource("1_msh7k")
+
+[node name="Control" type="Control" parent="." unique_id=190550104]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=48212283]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.02
+anchor_right = 0.02
+anchor_bottom = 0.02
+offset_right = 95.6
+offset_bottom = 42.4
+texture = ExtResource("2_r003q")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control/TextureRect" unique_id=735204037]
+layout_mode = 0
+offset_left = 38.6
+offset_top = 4.4
+offset_right = 85.6
+offset_bottom = 7.4
+step = 0.1
+value = 15.0
+nine_patch_stretch = true
+texture_progress = ExtResource("3_0la6b")
+
+[node name="Virtual Joystick" parent="." unique_id=64071013 instance=ExtResource("4_r003q")]
+offset_top = -150.0
+offset_bottom = 150.0
+scale = Vector2(0.5, 0.5)
+clampzone_size = 30.0
+joystick_mode = 1
+visibility_mode = 2
+action_left = "run_left"
+action_right = "run_right"
+
+[node name="RightButtons" type="Control" parent="." unique_id=1589819824]
+modulate = Color(1, 1, 1, 0.3529412)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 304.0
+offset_top = 184.0
+offset_right = 344.0
+offset_bottom = 224.0
+scale = Vector2(0.6, 0.6)
+
+[node name="A" type="TouchScreenButton" parent="RightButtons" unique_id=2000133754]
+position = Vector2(373.33337, 133.33331)
+texture_normal = ExtResource("5_0la6b")
+
+[node name="B" type="TextureButton" parent="RightButtons" unique_id=2011217194]
+visible = false
+layout_mode = 0
+offset_left = 544.0
+offset_top = 152.0
+offset_right = 644.0
+offset_bottom = 252.0
+texture_normal = ExtResource("6_71mc8")
+
+[node name="X" type="TouchScreenButton" parent="RightButtons" unique_id=1695202803]
+position = Vector2(293.33334, 80)
+texture_normal = ExtResource("7_sxsxl")
+
+[node name="Y" type="TextureButton" parent="RightButtons" unique_id=759137504]
+visible = false
+layout_mode = 0
+offset_left = 456.0
+offset_top = 80.0
+offset_right = 556.0
+offset_bottom = 180.0
+texture_normal = ExtResource("8_eueje")
+
+[connection signal="pressed" from="RightButtons/A" to="." method="_on_a_pressed"]
+[connection signal="released" from="RightButtons/A" to="." method="_on_a_released"]
+[connection signal="button_down" from="RightButtons/B" to="." method="_on_b_button_down"]
+[connection signal="pressed" from="RightButtons/B" to="." method="_on_b_pressed"]
+[connection signal="pressed" from="RightButtons/X" to="." method="_on_x_pressed"]
+[connection signal="released" from="RightButtons/X" to="." method="_on_x_released"]
+[connection signal="pressed" from="RightButtons/Y" to="." method="_on_y_pressed"]

@@ -1,6 +1,9 @@
 extends State
 class_name GroundedState
 
+func enter() -> void:
+	player.hurt.connect(_on_player_hurt)
+
 func physics_update(_delta: float):
 	if player.is_in_corner:
 		transitioned.emit("corner")
@@ -17,3 +20,7 @@ func physics_update(_delta: float):
 
 		elif player.is_crouching:
 			transitioned.emit("crouch")
+
+func _on_player_hurt(force: float):
+	print("aie ", force)
+	transitioned.emit("hurt")

@@ -29,9 +29,8 @@ func enter():
 func play_combo(idx: int):
 	player.toggle_attack_shape(true)
 	player.play_anim("attack_" + str(idx + 1))
-	player.play_sfx(attack_sound)
+	player.play_sfx(attack_sound, -10)
 	await player.anim.animation_finished
-	player.toggle_attack_shape(false)
 
 
 func physics_update(_delta: float):
@@ -43,5 +42,4 @@ func physics_update(_delta: float):
 		play_combo(current_combo)
 		stop_attack_timer.start()
 		
-func exit():
-	player.toggle_attack_shape(false)
+		

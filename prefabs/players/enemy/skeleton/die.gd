@@ -1,12 +1,13 @@
 extends EnemyState
 
-const hit_sound := preload("res://assets/audio/sfx/skeleton/hurt_02.ogg")
+const die_sound := preload("res://assets/audio/sfx/skeleton/creature_roar_03.ogg")
 
 func enter():
 	super.enter()
-	enemy.blood_particle.emitting = true
+	enemy.toggle_body_shape(false)
+	enemy.gravity_scale = 0
+	enemy.play_sfx(die_sound, 10)
 	enemy.play_anim("die")
-	enemy.play_sfx(hit_sound)
 	await enemy.anim.animation_finished
 
 func physics_update(_delta: float):

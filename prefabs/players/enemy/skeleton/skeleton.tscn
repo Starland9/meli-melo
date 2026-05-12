@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bw2hhqgluiw8i" path="res://prefabs/players/enemy/skeleton/idle.gd" id="4_bldoy"]
 [ext_resource type="Script" uid="uid://144m25dqkpbe" path="res://prefabs/players/enemy/skeleton/walk.gd" id="5_neiae"]
 [ext_resource type="Script" uid="uid://bt8pfgndgfm16" path="res://prefabs/players/enemy/skeleton/die.gd" id="6_q7k14"]
+[ext_resource type="Script" uid="uid://beddmm2pd4js1" path="res://prefabs/weapons/weapon.gd" id="7_x3tut"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8nq8c"]
 atlas = ExtResource("2_m0shm")
@@ -26,6 +27,10 @@ region = Rect2(108, 144, 36, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3xp8"]
 atlas = ExtResource("2_m0shm")
 region = Rect2(144, 144, 36, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfjo2"]
+atlas = ExtResource("2_m0shm")
+region = Rect2(0, 96, 36, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0shm"]
 atlas = ExtResource("2_m0shm")
@@ -107,6 +112,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jfjo2")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_m0shm")
 }, {
 "duration": 1.0,
@@ -169,20 +182,23 @@ height = 392.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3tut"]
 radius = 8.0
 
-[node name="Skeleton" type="CharacterBody2D" unique_id=559584696 node_paths=PackedStringArray("player_area", "hitbox", "shape", "blood_particle", "anim")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7k14"]
+radius = 1.0
+
+[node name="Skeleton" type="CharacterBody2D" unique_id=559584696 node_paths=PackedStringArray("player_area", "blood_particle", "anim", "hitbox", "attack_shape", "body_shape")]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_w1ici")
 player_area = NodePath("PlayerArea")
-hitbox = NodePath("Hitbox")
-shape = NodePath("CollisionShape2D")
 blood_particle = NodePath("CPUParticles2D")
-damage_count = 10
 anim = NodePath("AnimatedSprite2D")
+hitbox = NodePath("Hitbox")
+attack_shape = NodePath("AttackArea/CollisionShape2D")
+body_shape = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1451680216]
 sprite_frames = SubResource("SpriteFrames_xfyck")
-animation = &"idle"
+animation = &"hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=372659507]
 shape = SubResource("CapsuleShape2D_bldoy")
@@ -214,6 +230,16 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=97011171]
 shape = SubResource("CapsuleShape2D_x3tut")
 
+[node name="AttackArea" type="Area2D" parent="." unique_id=2129443886]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("7_x3tut")
+metadata/_custom_type_script = "uid://beddmm2pd4js1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=70601823]
+position = Vector2(10, 0)
+shape = SubResource("CircleShape2D_q7k14")
+
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1133211703]
 emitting = false
 amount = 100
@@ -226,5 +252,6 @@ damping_min = 6.272
 damping_max = 11.361
 color = Color(1, 0, 0, 1)
 
+[connection signal="hurt" from="." to="." method="_on_hurt"]
 [connection signal="player_entered" from="." to="." method="_on_player_entered"]
 [connection signal="player_exited" from="." to="." method="_on_player_exited"]

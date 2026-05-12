@@ -3,7 +3,8 @@ class_name Adventurer
 
 @onready var corner_check_area : Area2D = $Areas/CornerCheckArea
 @onready var grab_shape : CollisionShape2D = $GrapShape
-@onready var attack_shape : CollisionShape2D = $Areas/AttackArea/CollisionShape2D
+@onready var hud : PlayerHUD = $PlayerHUD
+
 
 var is_attacking := false
 var is_crouching := false
@@ -12,8 +13,10 @@ var double_jump_count := 1
 var is_in_corner := false
 
 func _ready() -> void:
+	super._ready()
 	SPEED = 150.0
 	JUMP_VELOCITY = -300.0
+	hud.init(max_damage_count, max_damage_count)
 
 
 func _physics_process(delta: float) -> void:
@@ -32,19 +35,18 @@ func handle_move():
 	update_direction()
 	
 	
-func update_direction():
-	if direction:
-		velocity.x = direction * SPEED * speed_scale
-
-		if not face_direction == direction:
-			if not is_in_corner:
-				face_direction = int(direction)
-				attack_shape.position.x = 15 * face_direction
-
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	anim.flip_h = face_direction < 0
+#func update_direction():
+	#if direction:
+		#velocity.x = direction * SPEED * speed_scale
+#
+		#if not face_direction == direction:
+			#if not is_in_corner:
+				#face_direction = int(direction)
+#
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, SPEED)
+#
+	#anim.flip_h = face_direction < 0
 
 func handle_jump():
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not is_in_corner:
@@ -74,5 +76,18 @@ func reset_attributes():
 	double_jump_count = 1
 	gravity_scale = 1
 	
-func toggle_attack_shape(enable: bool):
-	attack_shape.disabled = !enable
+func toggle_attack_shape(_enable: bool):
+	await get_tree().create_timer(0.1).timeout
+	attack_shape.disabled = false
+	await get_tree().create_timer(0.1).timeout
+	attack_shape.disabled = true
+
+
+func _on_hurt(_force: float) -> void:
+	if hud:
+		hud.set_health(max_damage_count - damage_count)
+	state_machine.on_child_transition("hurt")
+
+
+func _on_player_hud_right_button_just_pressed(value: String) -> void:
+	pass

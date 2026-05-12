@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://deak2gyeqa6al"]
+
+[ext_resource type="Texture2D" uid="uid://x3guyowx2wd2" path="res://assets/image/particles/hit11.png" id="1_wv3a2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20ckf"]
+atlas = ExtResource("1_wv3a2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckqxf"]
+atlas = ExtResource("1_wv3a2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0fcd"]
+atlas = ExtResource("1_wv3a2")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3skn4"]
+atlas = ExtResource("1_wv3a2")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p4pl"]
+atlas = ExtResource("1_wv3a2")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhyqh"]
+atlas = ExtResource("1_wv3a2")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7c6b"]
+atlas = ExtResource("1_wv3a2")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n0os"]
+atlas = ExtResource("1_wv3a2")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxmna"]
+atlas = ExtResource("1_wv3a2")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nujlk"]
+atlas = ExtResource("1_wv3a2")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o5go0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20ckf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckqxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0fcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3skn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p4pl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhyqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7c6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5n0os")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxmna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nujlk")
+}],
+"loop": false,
+"name": &"blood_sword",
+"speed": 30.0
+}]
+
+[node name="HitAnimator" type="Node2D" unique_id=1269358049]
+
+[node name="Anim" type="AnimatedSprite2D" parent="." unique_id=672442539]
+sprite_frames = SubResource("SpriteFrames_o5go0")
+animation = &"blood_sword"
+frame = 5
+frame_progress = 0.13336016

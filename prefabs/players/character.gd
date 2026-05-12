@@ -1,18 +1,31 @@
-@abstract
-class_name Character
 extends CharacterBody2D
+class_name Character
+
+signal hurt(force: float)
+signal die()
 
 var SPEED := 300.0
 var JUMP_VELOCITY := -400.0
 
 @export var anim : AnimatedSprite2D
+@export var audio_player : AudioStreamPlayer2D
+@export var hitbox : Area2D
+@export var attack_shape : CollisionShape2D
+@export var body_shape : CollisionShape2D
+@export var state_machine: StateMachine
+@export var speed_scale := 1.0
+
 
 var direction : float = 0
 @onready var face_direction : int = int(direction)
 var gravity_scale := 0.1
-var speed_scale := 1.0
+@export var max_damage_count := 5.0
+var damage_count := 0.0
 
-@export var audio_player : AudioStreamPlayer2D
+
+func _ready() -> void:
+	hitbox.area_entered.connect(_on_hitbox_area_entered)
+
 
 func update_direction():
 	if direction:
@@ -20,6 +33,8 @@ func update_direction():
 		
 		if not face_direction == direction:
 			face_direction = 1 if direction > 0 else -1
+			attack_shape.position.x = face_direction * abs(attack_shape.position.x)
+			
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -30,10 +45,11 @@ func play_anim(anim_name: StringName = &"", custom_speed: float = 1.0):
 	anim.play(anim_name, custom_speed)
 
 
-func play_sfx(sound: AudioStream, from_position: float = 0.0):
+func play_sfx(sound: AudioStream, volume_db: float = 0.0, from_position: float = 0.0):
 	var audio_player_2 := AudioStreamPlayer2D.new()
 	add_child(audio_player_2)
 	audio_player_2.stream = sound
+	audio_player_2.volume_db = volume_db
 	audio_player_2.play(from_position)
 	await audio_player_2.finished
 	audio_player_2.queue_free()
@@ -43,6 +59,7 @@ func play_sfx_loop(sound: AudioStream, from_position: float = 0.0):
 	audio_player.stream = sound
 	audio_player.play(from_position)
 
+
 func stop_sfx_loop():
 	audio_player.stop()
 	
@@ -51,5 +68,16 @@ func apply_gravity(delta: float):
 	if not is_on_floor():
 		velocity += get_gravity() * delta * gravity_scale
 		
-func toggle_attack_shape(enable: bool):
+		
+func toggle_attack_shape(_enable: bool):
 	pass
+
+func toggle_body_shape(enable: bool):
+	body_shape.disabled = !enable
+	attack_shape.disabled = !enable
+	
+func _on_hitbox_area_entered(area: Area2D):
+	if area is Weapon:
+		damage_count += 1
+		hurt.emit(area.force)
+		

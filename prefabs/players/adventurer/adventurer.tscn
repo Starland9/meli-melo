@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://bt6oi2iw8v8ig" path="res://prefabs/players/adventurer/slide.gd" id="9_pdr8w"]
 [ext_resource type="Script" uid="uid://dxf7wl424i3fl" path="res://prefabs/players/adventurer/corner.gd" id="10_jvpeh"]
 [ext_resource type="Script" uid="uid://beddmm2pd4js1" path="res://prefabs/weapons/weapon.gd" id="11_h0qcu"]
+[ext_resource type="Script" uid="uid://cysp5anes0xlv" path="res://prefabs/players/adventurer/hurt.gd" id="11_safqx"]
+[ext_resource type="PackedScene" uid="uid://cdaa4cb1pnqb1" path="res://hud/player_hud.tscn" id="13_rd3yi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_puyjy"]
 atlas = ExtResource("1_s8gn1")
@@ -605,7 +607,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s8gn1"]
-radius = 9.0
+radius = 6.0
 height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvpeh"]
@@ -617,17 +619,23 @@ size = Vector2(24, 3)
 [sub_resource type="CircleShape2D" id="CircleShape2D_jvpeh"]
 radius = 6.0827627
 
-[node name="Adventurer" type="CharacterBody2D" unique_id=431064942 node_paths=PackedStringArray("anim", "audio_player")]
-collision_layer = 28
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_safqx"]
+radius = 7.0
+height = 26.0
+
+[node name="Adventurer" type="CharacterBody2D" unique_id=431064942 node_paths=PackedStringArray("anim", "audio_player", "hitbox", "attack_shape", "body_shape", "state_machine")]
+collision_layer = 30
 script = ExtResource("1_qujmd")
 anim = NodePath("Anim")
 audio_player = NodePath("AudioPlayer")
+hitbox = NodePath("Areas/Hitbox")
+attack_shape = NodePath("Areas/AttackArea/CollisionShape2D")
+body_shape = NodePath("CollisionShape2D")
+state_machine = NodePath("StateMachine")
 
 [node name="Anim" type="AnimatedSprite2D" parent="." unique_id=553457952]
 sprite_frames = SubResource("SpriteFrames_jvpeh")
-animation = &"attack_1"
-frame = 4
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741783968]
 position = Vector2(0, 4)
@@ -663,6 +671,9 @@ script = ExtResource("9_pdr8w")
 [node name="Corner" type="Node" parent="StateMachine" unique_id=1170816855]
 script = ExtResource("10_jvpeh")
 
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=208421981]
+script = ExtResource("11_safqx")
+
 [node name="Cam" type="Camera2D" parent="." unique_id=656124169]
 process_callback = 0
 limit_top = 0
@@ -687,4 +698,17 @@ position = Vector2(15, 2)
 shape = SubResource("CircleShape2D_jvpeh")
 disabled = true
 
+[node name="Hitbox" type="Area2D" parent="Areas" unique_id=1594309802]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Hitbox" unique_id=168917917]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_safqx")
+
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=187314844]
+
+[node name="PlayerHUD" parent="." unique_id=957550667 instance=ExtResource("13_rd3yi")]
+
+[connection signal="hurt" from="." to="." method="_on_hurt"]
+[connection signal="right_button_just_pressed" from="PlayerHUD" to="." method="_on_player_hud_right_button_just_pressed"]
