@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cde0aguw41032"
+path="res://.godot/imported/Edge of Haven.mp3-9c00b2fe8d61a5b9fc7c91b82f771000.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sounds/hub/Edge of Haven.mp3"
+dest_files=["res://.godot/imported/Edge of Haven.mp3-9c00b2fe8d61a5b9fc7c91b82f771000.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

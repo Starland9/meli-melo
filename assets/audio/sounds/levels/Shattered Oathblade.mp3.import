@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://k5vwx06l23qj"
+path="res://.godot/imported/Shattered Oathblade.mp3-1a57a4a1ae7efd46f0c58f19f7f34822.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sounds/levels/Shattered Oathblade.mp3"
+dest_files=["res://.godot/imported/Shattered Oathblade.mp3-1a57a4a1ae7efd46f0c58f19f7f34822.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

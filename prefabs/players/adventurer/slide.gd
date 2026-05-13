@@ -22,7 +22,7 @@ func enter():
 	player.speed_scale = 2
 	player.play_anim("slide")
 	slide_timer.start()
-	player.play_sfx(slide_sound)
+	player.play_sfx(slide_sound, -20)
 
 
 func physics_update(_delta: float):

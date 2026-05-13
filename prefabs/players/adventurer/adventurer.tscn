@@ -10,8 +10,9 @@
 [ext_resource type="Script" uid="uid://cf33jj8wjdd5b" path="res://prefabs/players/adventurer/crouch.gd" id="8_kx2vy"]
 [ext_resource type="Script" uid="uid://bt6oi2iw8v8ig" path="res://prefabs/players/adventurer/slide.gd" id="9_pdr8w"]
 [ext_resource type="Script" uid="uid://dxf7wl424i3fl" path="res://prefabs/players/adventurer/corner.gd" id="10_jvpeh"]
-[ext_resource type="Script" uid="uid://beddmm2pd4js1" path="res://prefabs/weapons/weapon.gd" id="11_h0qcu"]
 [ext_resource type="Script" uid="uid://cysp5anes0xlv" path="res://prefabs/players/adventurer/hurt.gd" id="11_safqx"]
+[ext_resource type="PackedScene" uid="uid://ckwhhgfdhd16q" path="res://prefabs/areas/player/player_attack_area.tscn" id="12_rd3yi"]
+[ext_resource type="PackedScene" uid="uid://boeuo1m0s4nhm" path="res://prefabs/areas/player/player_hitbox.tscn" id="13_fb7li"]
 [ext_resource type="PackedScene" uid="uid://cdaa4cb1pnqb1" path="res://hud/player_hud.tscn" id="13_rd3yi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_puyjy"]
@@ -628,10 +629,11 @@ collision_layer = 30
 script = ExtResource("1_qujmd")
 anim = NodePath("Anim")
 audio_player = NodePath("AudioPlayer")
-hitbox = NodePath("Areas/Hitbox")
-attack_shape = NodePath("Areas/AttackArea/CollisionShape2D")
+hitbox = NodePath("Areas/PlayerHitbox")
+attack_shape = NodePath("Areas/PlayerAttackArea/CollisionShape2D")
 body_shape = NodePath("CollisionShape2D")
 state_machine = NodePath("StateMachine")
+max_damage_count = 50.0
 
 [node name="Anim" type="AnimatedSprite2D" parent="." unique_id=553457952]
 sprite_frames = SubResource("SpriteFrames_jvpeh")
@@ -675,8 +677,9 @@ script = ExtResource("10_jvpeh")
 script = ExtResource("11_safqx")
 
 [node name="Cam" type="Camera2D" parent="." unique_id=656124169]
+zoom = Vector2(1.2, 1.2)
 process_callback = 0
-limit_top = 0
+limit_top = -20
 limit_bottom = 360
 
 [node name="Areas" type="Node2D" parent="." unique_id=1852168276]
@@ -687,22 +690,16 @@ limit_bottom = 360
 position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_pdr8w")
 
-[node name="AttackArea" type="Area2D" parent="Areas" unique_id=2146777912]
-collision_layer = 16
-collision_mask = 32
-script = ExtResource("11_h0qcu")
-metadata/_custom_type_script = "uid://beddmm2pd4js1"
+[node name="PlayerAttackArea" parent="Areas" unique_id=1112949435 instance=ExtResource("12_rd3yi")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/AttackArea" unique_id=1812992178]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/PlayerAttackArea" unique_id=1812992178]
 position = Vector2(15, 2)
 shape = SubResource("CircleShape2D_jvpeh")
 disabled = true
 
-[node name="Hitbox" type="Area2D" parent="Areas" unique_id=1594309802]
-collision_layer = 32
-collision_mask = 16
+[node name="PlayerHitbox" parent="Areas" unique_id=1934224050 instance=ExtResource("13_fb7li")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Hitbox" unique_id=168917917]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/PlayerHitbox" unique_id=168917917]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_safqx")
 

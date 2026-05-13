@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bic3kv57xs164"]
+
+[node name="EnemyHitbox" type="Area2D" unique_id=389141293]
+collision_layer = 32
+collision_mask = 128

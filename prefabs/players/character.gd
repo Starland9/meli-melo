@@ -15,6 +15,9 @@ var JUMP_VELOCITY := -400.0
 @export var state_machine: StateMachine
 @export var speed_scale := 1.0
 
+@onready var cam : Camera2D = get_viewport().get_camera_2d()
+@onready var cam_start_pos : Vector2 = cam.global_position
+
 
 var direction : float = 0
 @onready var face_direction : int = int(direction)
@@ -79,5 +82,23 @@ func toggle_body_shape(enable: bool):
 func _on_hitbox_area_entered(area: Area2D):
 	if area is Weapon:
 		damage_count += 1
+		_hit_slop()
+		_shake_camera()
 		hurt.emit(area.force)
+
+func _hit_slop():
+	get_tree().paused = true
+	await get_tree().create_timer(0.02).timeout
+	get_tree().paused = false
 		
+func _shake_camera():
+	randomize()
+	var tween = get_tree().create_tween().bind_node(cam)
+	var shake_factor := 5
+	var shake_position = Vector2(randf_range(-shake_factor, shake_factor), randf_range(-shake_factor, shake_factor))
+	var shake_time := 0.12
+	tween.tween_property(cam, "position", cam.position - shake_position, shake_time).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(cam, "position", cam.position + shake_position, shake_time).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(cam, "position", Vector2.ZERO, shake_time).set_trans(Tween.TRANS_ELASTIC)
+
+	

@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://boeuo1m0s4nhm"]
+
+[node name="PlayerHitbox" type="Area2D" unique_id=1934224050]
+collision_layer = 64
+collision_mask = 16

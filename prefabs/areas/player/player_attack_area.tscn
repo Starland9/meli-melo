@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ckwhhgfdhd16q"]
+
+[ext_resource type="Script" uid="uid://beddmm2pd4js1" path="res://prefabs/weapons/weapon.gd" id="1_m3lvx"]
+
+[node name="PlayerAttackArea" type="Area2D" unique_id=1112949435]
+collision_layer = 128
+collision_mask = 32
+script = ExtResource("1_m3lvx")
+metadata/_custom_type_script = "uid://beddmm2pd4js1"

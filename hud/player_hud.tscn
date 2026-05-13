@@ -21,6 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control" unique_id=48212283]
+modulate = Color(1, 1, 1, 0.78431374)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -45,6 +46,7 @@ nine_patch_stretch = true
 texture_progress = ExtResource("3_0la6b")
 
 [node name="Virtual Joystick" parent="." unique_id=64071013 instance=ExtResource("4_r003q")]
+visible = false
 offset_top = -150.0
 offset_bottom = 150.0
 scale = Vector2(0.5, 0.5)
@@ -58,11 +60,11 @@ action_right = "run_right"
 modulate = Color(1, 1, 1, 0.3529412)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 304.0
-offset_top = 184.0
-offset_right = 344.0
-offset_bottom = 224.0
-scale = Vector2(0.6, 0.6)
+offset_left = 240.0
+offset_top = 160.0
+offset_right = 280.0
+offset_bottom = 200.0
+scale = Vector2(0.8, 0.8)
 
 [node name="A" type="TouchScreenButton" parent="RightButtons" unique_id=2000133754]
 position = Vector2(373.33337, 133.33331)

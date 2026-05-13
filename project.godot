@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Meli Melo"
-run/main_scene="uid://crh7f45wkiqrf"
+run/main_scene="uid://b2jqfsme55ulu"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dbuf4xdfptiye"
 
 [display]
 
@@ -32,6 +32,10 @@ movie_writer/movie_file="/home/landryr/Dev/Godot/meli-melo/film.avi"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/virtual_joystick/plugin.cfg")
+
+[gui]
+
+theme/custom_font="uid://cb5mwuwxrlcaa"
 
 [input]
 
@@ -53,7 +57,8 @@ jump={
 }
 attack={
 "deadzone": 0.2,
-"events": []
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(215, 19),"global_position":Vector2(223, 63),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
 }
 crouch={
 "deadzone": 0.2,
@@ -72,8 +77,10 @@ pointing/emulate_mouse_from_touch=false
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="World"
 2d_physics/layer_4="PlayerArea"
-2d_physics/layer_5="Hitbox"
-2d_physics/layer_6="Weapon"
+2d_physics/layer_5="PlayerHitbox"
+2d_physics/layer_6="PlayerWeapon"
+2d_physics/layer_7="EnemyWeapon"
+2d_physics/layer_8="EnemyHitbox"
 
 [physics]
 
