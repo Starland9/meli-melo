@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 
 
 func _on_btn_play_button_down() -> void:
-	get_tree().change_scene_to_file("res://scenes/playground/playground.tscn")
+	WorldManager.go_to_level(1)

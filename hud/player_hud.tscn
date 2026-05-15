@@ -57,6 +57,7 @@ action_left = "run_left"
 action_right = "run_right"
 
 [node name="RightButtons" type="Control" parent="." unique_id=1589819824]
+visible = false
 modulate = Color(1, 1, 1, 0.3529412)
 layout_mode = 3
 anchors_preset = 0

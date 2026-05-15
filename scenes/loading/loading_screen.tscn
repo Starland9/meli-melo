@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://ch5q8cs12i5dx"]
+
+[ext_resource type="Texture2D" uid="uid://cyt7ykfkuail3" path="res://assets/image/hud/sprite (1).png" id="1_5brb8"]
+[ext_resource type="Script" uid="uid://dcr22ay4vkrpb" path="res://scenes/loading/loading_screen.gd" id="1_vq1n5"]
+[ext_resource type="Texture2D" uid="uid://cgh20idyybnkp" path="res://assets/image/hud/32x32_loading9.png" id="3_6etoq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ooyb"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqe57"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2tle"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1o2w"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hf2f"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxgot"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjn1f"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50agf"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmide"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mvp8"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oila2"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18w6g"]
+atlas = ExtResource("3_6etoq")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bau7x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ooyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqe57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2tle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1o2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hf2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxgot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjn1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50agf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmide")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mvp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oila2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18w6g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="LoadingScreen" type="Control" unique_id=2144659523]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vq1n5")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2133937722]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureProgressBar" type="TextureRect" parent="." unique_id=1438170287]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -243.0
+offset_top = -27.0
+offset_right = 243.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_5brb8")
+
+[node name="ProgressBar" type="ProgressBar" parent="TextureProgressBar" unique_id=916062601]
+modulate = Color(0.9185232, 0.19653028, 0.61957926, 1)
+layout_mode = 0
+offset_left = 21.0
+offset_top = 7.0
+offset_right = 466.0
+offset_bottom = 18.0
+show_percentage = false
+
+[node name="Control" type="Control" parent="." unique_id=55038622]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control" unique_id=95004886]
+sprite_frames = SubResource("SpriteFrames_bau7x")
+frame_progress = 0.95058465
+centered = false
+
+[connection signal="value_changed" from="TextureProgressBar/ProgressBar" to="." method="_on_progress_bar_value_changed"]

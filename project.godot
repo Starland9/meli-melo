@@ -15,6 +15,10 @@ run/main_scene="uid://b2jqfsme55ulu"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://dbuf4xdfptiye"
 
+[autoload]
+
+WorldManager="*uid://hiyhvfag2uh2"
+
 [display]
 
 window/size/viewport_width=640
@@ -69,6 +73,7 @@ crouch={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
 
 [layer_names]
 
